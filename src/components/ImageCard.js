@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class ImageCard extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ class ImageCard extends Component {
     this.imageRef = React.createRef();
   }
   componentDidMount() {
-    this.imageRef.current.addEventListener("load", this.setSpans);
+    this.imageRef.current.addEventListener('load', this.setSpans);
   }
 
   setSpans = () => {
@@ -18,9 +18,10 @@ class ImageCard extends Component {
 
   render() {
     const { alt_description, urls } = this.props.image;
+    const { src } = this.props.image1;
     return (
       <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <img src={urls.regular} alt={alt_description} ref={this.imageRef} />
+        <img src={src.medium} alt={alt_description} ref={this.imageRef} />
       </div>
     );
   }

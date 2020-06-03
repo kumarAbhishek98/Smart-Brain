@@ -18,13 +18,27 @@ class ImageSearch extends Component {
     );
     this.setState({
       images: response.data.results,
+      results: response.data.total,
     });
+    const response1 = await axios.get(`https://api.pexels.com/v1/search`, {
+      params: {
+        query: term,
+        per_page: 15,
+        page: 1,
+      },
+      headers: {
+        Authorization:
+          '563492ad6f9170000100000122fc1036ed17406a902cd17b5777846d',
+      },
+    });
+    this.setState({ images: response1.data.photos });
   };
   render() {
+    console.log(this.state.images);
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <ImageList images={this.state.images} />
+        <ImageList images={this.state.images} count={this.state.results} />
       </div>
     );
   }
